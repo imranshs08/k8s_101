@@ -21,6 +21,7 @@ spec:
   # 3. ActiveGate
   # Required for routing Kubernetes API metrics (if not using direct ingest).
   activeGate:
+    group: default
     capabilities:
       - routing
       - kubernetes-monitoring
