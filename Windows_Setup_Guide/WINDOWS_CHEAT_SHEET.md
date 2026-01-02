@@ -11,7 +11,7 @@ We will use **Kind (Kubernetes in Docker)** to create a 3-node cluster on your m
 
 | Category | Do ✅ | Don't ❌ |
 | :--- | :--- | :--- |
-| **Terminal** | Use **PowerShell** or **Git Bash**. | Do NOT use standard Command Prompt (cmd). |
+| **Terminal** | Use **PowerShell** (Admin). | **AVOID** Git Bash (Known `kind` path issues). |
 | **Paths** | Use forward slashes `/` or double backslashes `\\` in configs. | Do NOT assume Linux paths (`/etc/...`) work on Host. |
 | **Line Endings** | Configure Git: `git config --global core.autocrlf true` | Do NOT save YAML files with Windows CRLF if mapping volumes. |
 | **Cluster Tool** | Use **Kind** or **Minikube (Multi-node)**. | Do NOT use **Docker Desktop K8s** (It's 1 node only). |
