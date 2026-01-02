@@ -8,7 +8,7 @@ Simulate a Distributed Denial of Service (DDoS) or a massive scale-up event. Obs
 ### 1. Deploy the Load Generator
 This deployment runs a tight loop of DNS queries.
 ```bash
-kubectl apply -f ../manifests/dns-load-generator.yaml
+kubectl apply -f manifests/dns-load-generator.yaml
 ```
 
 ### 2. Verify Load
@@ -38,7 +38,7 @@ Watch the CoreDNS latency skyrocket.
 
 ### 6. Cleanup
 ```bash
-kubectl delete -f ../manifests/dns-load-generator.yaml
+kubectl delete -f manifests/dns-load-generator.yaml
 ```
 
 ## Production Lesson

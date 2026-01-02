@@ -11,9 +11,9 @@ Establish a "Golden Signal" baseline for DNS performance in a healthy cluster. B
 ## Steps
 
 ### 1. Deploy the Test App
-Deploy a simple Pod with DNS utilities installed.
+*Run from Project Root*:
 ```bash
-kubectl apply -f ../manifests/test-app.yaml
+kubectl apply -f manifests/test-app.yaml
 ```
 
 ### 2. Generate "Good" Traffic

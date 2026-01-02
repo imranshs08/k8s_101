@@ -15,7 +15,7 @@ Instead of a real Windows Server, we will use a **Simulated DNS Pod**.
 ### 1. Deploy the "External" DNS Simulator
 This pod acts as your "Corporate DNS". It knows about `*.corp.local`.
 ```bash
-kubectl apply -f ../manifests/external-dns-sim.yaml
+kubectl apply -f manifests/external-dns-sim.yaml
 ```
 
 ### 2. Get the Simulator's IP
@@ -101,7 +101,7 @@ Simulate a typo in the CoreDNS config (Wrong IP).
 ## Cleanup
 Remove the simulator and revert the ConfigMap.
 ```bash
-kubectl delete -f ../manifests/external-dns-sim.yaml
-kubectl apply -f ../manifests/coredns-configmap.yaml
+kubectl delete -f manifests/external-dns-sim.yaml
+kubectl apply -f manifests/coredns-configmap.yaml
 kubectl rollout restart deployment coredns -n kube-system
 ```

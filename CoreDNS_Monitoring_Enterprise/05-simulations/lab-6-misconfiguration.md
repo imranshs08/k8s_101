@@ -8,7 +8,7 @@ Simulate a "Fat Finger" configuration error that takes down DNS.
 ### 1. Apply Broken Configuration
 We are applying a `ConfigMap` with a syntax error (`ready_fail` plugin isn't real).
 ```bash
-kubectl apply -f ../manifests/broken-coredns.yaml
+kubectl apply -f manifests/broken-coredns.yaml
 ```
 
 ### 2. Restart CoreDNS
@@ -39,7 +39,7 @@ kubectl exec -it dns-test -- nslookup google.com
 ### 5. Recovery
 Apply the known-good config.
 ```bash
-kubectl apply -f ../manifests/coredns-configmap.yaml
+kubectl apply -f manifests/coredns-configmap.yaml
 kubectl rollout restart deployment coredns -n kube-system
 ```
 

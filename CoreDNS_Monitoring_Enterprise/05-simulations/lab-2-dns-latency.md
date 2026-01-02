@@ -19,7 +19,7 @@ kubectl exec -it dns-test -- sh -c "while true; do dig google.com | grep 'Query 
 ### 2. Inject the Failure
 Open Terminal 2. Apply the "Network Delay" DaemonSet.
 ```bash
-kubectl apply -f ../manifests/network-delay.yaml
+kubectl apply -f manifests/network-delay.yaml
 ```
 
 ### 3. Observe the Impact
@@ -35,7 +35,7 @@ Look at Terminal 1.
 ### 5. Cleanup
 Remove the injector to restore sanity.
 ```bash
-kubectl delete -f ../manifests/network-delay.yaml
+kubectl delete -f manifests/network-delay.yaml
 ```
 *Note: It may take 30s for the latency to disappear as the DaemonSet cleans up.*
 
