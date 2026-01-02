@@ -1,0 +1,3 @@
+# User-specific secrets
+dynatrace-secrets.yaml
+*.secret.yaml
