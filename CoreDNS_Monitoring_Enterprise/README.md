@@ -140,6 +140,7 @@ This project builds a **Lab Environment** on your machine to practice disaster s
 | **Lab 4** | **Pod Failure** | `kill` CoreDNS pods. Verify High Availability (HA) configuration. |
 | **Lab 5** | **Load Spike** | Use a load generator to hammer DNS. Observe CPU throttling. |
 | **Lab 6** | **Misconfiguration** | Break the `Corefile`. Observe partial outages. |
+| **Lab 7** | **Hybrid/Enterprise DNS** | Simulate forwarding to an on-premise Windows DNS server. |
 
 ---
 
