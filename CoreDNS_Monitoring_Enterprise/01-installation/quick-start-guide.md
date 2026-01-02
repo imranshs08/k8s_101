@@ -4,9 +4,10 @@
 Ensure you have Docker Desktop (WSL2), `kind`, and `kubectl` installed.
 
 ## 2. Create the Cluster
-Use the multi-node config we prepared.
+Run these commands from the **Project Root** (`CoreDNS_Monitoring_Enterprise` folder).
+
 ```bash
-kind create cluster --config ../02-cluster-setup/kind-multinode.yaml --name dns-lab
+kind create cluster --config 02-cluster-setup/kind-multinode.yaml --name dns-lab
 ```
 *Verify*:
 ```bash
@@ -41,12 +42,22 @@ kubectl get nodes
         *   `Ingest events`
 
 4.  Apply your Secret (Token) and DynaKube:
+    
+    **Option A: Using the Secrets File (Recommended)**
+    ```bash
+    kubectl apply -f 04-dynatrace-observability/dynatrace-secrets.yaml
+    ```
+
+    **Option B: Manual Creation**
     ```bash
     kubectl create secret generic dynatrace-tokens -n dynatrace \
       --from-literal="apiToken=<API_TOKEN>" \
       --from-literal="dataIngestToken=<DATA_INGEST_TOKEN>"
+    ```
 
-    kubectl apply -f ../04-dynatrace-observability/dynakube.yaml
+    **Deploy the Operator config:**
+    ```bash
+    kubectl apply -f 04-dynatrace-observability/dynakube.yaml
     ```
 
 ## 4. Verification
