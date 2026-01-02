@@ -27,8 +27,25 @@ kubectl get nodes
     ```bash
     kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/latest/download/kubernetes.yaml
     ```
-3.  Apply your Secret (Token) and DynaKube:
+3.  **Generate Tokens**:
+    *   **API Token** (Scopes needed):
+        *   `Read metrics`
+        *   `Read entities`
+        *   `Read settings`
+        *   `Write settings`
+        *   `Access problem and event feed, metrics, and topology`
+        *   `PaaS integration - Installer download`
+    *   **Data Ingest Token** (Scopes needed):
+        *   `Ingest metrics`
+        *   `Ingest logs`
+        *   `Ingest events`
+
+4.  Apply your Secret (Token) and DynaKube:
     ```bash
+    kubectl create secret generic dynatrace-tokens -n dynatrace \
+      --from-literal="apiToken=<API_TOKEN>" \
+      --from-literal="dataIngestToken=<DATA_INGEST_TOKEN>"
+
     kubectl apply -f ../04-dynatrace-observability/dynakube.yaml
     ```
 
