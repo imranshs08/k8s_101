@@ -1,0 +1,39 @@
+apiVersion: dynatrace.com/v1beta1
+kind: DynaKube
+metadata:
+  name: dynakube
+  namespace: dynatrace
+  annotations:
+    feature.dynatrace.com/max-csi-mount-attempts: "5"
+spec:
+  # 1. API Configuration
+  # REPLACE THESE WITH YOUR ACTUAL VALUES
+  apiUrl: https://<TENANTID>.live.dynatrace.com/api
+  tokens: "dynatrace-tokens" # The name of the secret containing API/Ingest tokens
+
+  # 2. Monitoring Mode
+  # "classicFullStack" injects OneAgent into nodes to monitor processes (including CoreDNS) automatically.
+  # This is the easiest way to get CPU/Memory/Network stats for CoreDNS.
+  oneAgent:
+    classicFullStack:
+      image: "" # defaults to latest
+
+  # 3. ActiveGate
+  # Required for routing Kubernetes API metrics (if not using direct ingest).
+  activeGate:
+    capabilities:
+      - routing
+      - kubernetes-monitoring
+      - dynatrace-api
+    image: "" # defaults to latest
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1.5Gi
+
+  # 4. Proxy (Optional)
+  # proxy:
+  #   valueFrom: dynatrace-proxy

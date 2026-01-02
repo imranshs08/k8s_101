@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: network-delay-injector
+  namespace: kube-system
+  labels:
+    app: network-delay-injector
+spec:
+  selector:
+    matchLabels:
+      app: network-delay-injector
+  template:
+    metadata:
+      labels:
+        app: network-delay-injector
+    spec:
+      hostNetwork: true
+      containers:
+        - name: netem-injector
+          image: nicolaka/netshoot
+          securityContext:
+            privileged: true
+          command: ["/bin/sh"]
+          args:
+            - -c
+            - |
+              echo "Injecting 200ms delay on eth0..."
+              # Clean up old rules first
+              tc qdisc del dev eth0 root || true
+              # Add 200ms delay with 20ms jitter
+              tc qdisc add dev eth0 root netem delay 200ms 20ms distribution normal
+              echo "Delay active. Sleeping forever."
+              sleep infinity
+          lifecycle:
+            preStop:
+              exec:
+                command: ["tc", "qdisc", "del", "dev", "eth0", "root"]

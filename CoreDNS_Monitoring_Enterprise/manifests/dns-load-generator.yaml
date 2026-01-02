@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dns-load-generator
+  namespace: default
+  labels:
+    app: dns-load-generator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dns-load-generator
+  template:
+    metadata:
+      labels:
+        app: dns-load-generator
+    spec:
+      containers:
+        - name: query-spammer
+          image: busybox
+          command: ["/bin/sh"]
+          args:
+            - -c
+            - |
+              echo "Starting DNS Load Test..."
+              while true; do
+                nslookup kubernetes.default.svc.cluster.local > /dev/null 2>&1
+                nslookup google.com > /dev/null 2>&1
+                nslookup test-service.default.svc.cluster.local > /dev/null 2>&1
+                nslookup non-existent-domain.bad > /dev/null 2>&1
+                sleep 0.01
+              done
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
