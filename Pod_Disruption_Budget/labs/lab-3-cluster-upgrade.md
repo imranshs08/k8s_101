@@ -5,6 +5,10 @@ Simulate a managed Kubernetes (AKS/EKS/GKE) upgrade process where nodes are repl
 
 ## Concept
 In managed upgrades, the cloud provider creates a new node (Upgrade Surge), then `drains` an old node. This is identical to **Lab 1** but happens automatically for *every* node.
+ 
+ > [!NOTE]
+ > **For Kind Users**: Real `kind` upgrades usually involve deleting and recreating the cluster (which deletes all PDBs). 
+ > However, this lab accurately simulates the **Node Drain** event that happens during an EKS/AKS upgrade or an on-premise rolling upgrade. By manually draining a node here, you are practicing the exact scenario that validates PDBs in production.
 
 ## Steps (Simulation)
 

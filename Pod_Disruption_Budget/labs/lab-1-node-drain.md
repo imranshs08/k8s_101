@@ -4,7 +4,11 @@
 Understand how PDB prevents a node drain when it violates the availability budget.
 
 ## Prerequisites
-- A Kubernetes cluster (minikube, kind, or EKS/AKS) with at least 2 nodes.
+- **Crucial**: A Multi-Node Kubernetes cluster. PDBs require multiple nodes to reschedule pods during a drain.
+- **For Kind Users**: Use the provided config to create a 3-worker cluster:
+  ```bash
+  kind create cluster --config ../manifests/kind-config.yaml --name pdb-lab
+  ```
 - `kubectl` configured.
 
 ## Scenario
