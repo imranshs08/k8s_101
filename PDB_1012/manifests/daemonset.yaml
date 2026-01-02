@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: logging-agent
+  namespace: default
+  labels:
+    app: logging-agent
+spec:
+  selector:
+    matchLabels:
+      app: logging-agent
+  template:
+    metadata:
+      labels:
+        app: logging-agent
+    spec:
+      containers:
+        - name: fluentd
+          image: fluent/fluentd:v1.16
+          resources:
+            requests:
+              cpu: 100m
+              memory: 200Mi

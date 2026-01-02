@@ -1,0 +1,53 @@
+# ⚠️ DANGEROUS CONFIGURATIONS ⚠️
+# DO NOT APPLY THIS FILE IN PRODUCTION
+# It is for learning purposes only.
+
+---
+# 1. THE DEADLOCK PDB (minAvailable = 100%)
+# This prevents ANY voluntary eviction. Draining a node will hang FOREVER.
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: dangerous-lock-pdb
+spec:
+  minAvailable: 100% # ❌ NEVER DO THIS (unless you strictly want to block upgrades)
+  selector:
+    matchLabels:
+      app: payment-service
+
+---
+# 2. IMPOSSIBLE TO SATISFY (minAvailable > Replicas)
+# If you have 3 Replicas, but ask for 4.
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: impossible-pdb
+spec:
+  minAvailable: 10
+  selector:
+    matchLabels:
+      app: payment-service # (Assumes replicas is < 10)
+
+---
+# 3. CONFLICTING PDBs
+# Two PDBs selecting the same pods.
+# The controller must satisfy BOTH.
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: conflict-pdb-1
+spec:
+  maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: payment-service
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: conflict-pdb-2
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: payment-service

@@ -1,0 +1,12 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: multi-app-pdb
+  namespace: default
+spec:
+  # This PDB covers multiple applications if they share a label.
+  # Generally NOT recommended (Keep PDB 1:1 with Workloads), but possible.
+  minAvailable: 2
+  selector:
+    matchLabels:
+      tier: frontend # Matches both 'frontend-ui' and 'admin-ui' deployments

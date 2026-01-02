@@ -1,0 +1,12 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: postgres-pdb
+  namespace: default
+spec:
+  # Critical for databases: Ensure Quorum is maintained.
+  # If replicas=3, minAvailable=2 ensures we never lose quorum (majority).
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: postgres-db

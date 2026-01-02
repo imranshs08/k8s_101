@@ -1,0 +1,13 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: payment-pdb-maxunavailable
+  namespace: default
+spec:
+  # Requirement: Maximum 1 pod can be unavailable at a time.
+  # With replicas: 4, this allows evicting only 1 pod at a time.
+  # This is SAFER for high availability during rolling updates.
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: payment-service

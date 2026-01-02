@@ -1,0 +1,12 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: payment-pdb-minavailable
+  namespace: default
+spec:
+  # Requirement: At least 2 pods must be available at all times.
+  # With replicas: 4, this allows evicting 2 pods simultaneously.
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: payment-service
