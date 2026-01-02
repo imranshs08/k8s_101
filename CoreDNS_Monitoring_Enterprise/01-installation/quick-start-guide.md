@@ -16,6 +16,9 @@ kubectl get nodes
 
 ## 3. Install Dynatrace Operator
 (Requires your Tenant credentials)
+> **Your Lab Credentials**:
+> *   **URL**: `https://fqj51381.live.dynatrace.com`
+> *   **Login**: `gevohik943@nctime.com`
 1.  Create the `dynatrace` namespace:
     ```bash
     kubectl create namespace dynatrace

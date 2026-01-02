@@ -8,7 +8,7 @@ metadata:
 spec:
   # 1. API Configuration
   # REPLACE THESE WITH YOUR ACTUAL VALUES
-  apiUrl: https://<TENANTID>.live.dynatrace.com/api
+  apiUrl: https://fqj51381.live.dynatrace.com/api
   tokens: "dynatrace-tokens" # The name of the secret containing API/Ingest tokens
 
   # 2. Monitoring Mode
