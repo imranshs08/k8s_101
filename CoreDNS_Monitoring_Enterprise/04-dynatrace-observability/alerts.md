@@ -12,6 +12,15 @@ Dynatrace alerts are called **Anomaly Detection** rules. There are two ways to d
 
 **We will use Metric Events (Method 1)** because they are predictable for labs.
 
+### ⚠️ Prerequisite: Generate Traffic First!
+If you just installed Dynatrace, the metrics might not exist yet because **no one is using DNS**.
+Run this to generate some data (from Project Root):
+```bash
+kubectl apply -f manifests/dns-load-generator.yaml
+```
+Wait 2-3 minutes, then proceed.
+
+
 ---
 
 ## Alert 1: High Error Rate (The "Recall" Alert)
@@ -24,7 +33,10 @@ Dynatrace alerts are called **Anomaly Detection** rules. There are two ways to d
     *   Click **Add metric event**.
 3.  **Step 1: Metric Definition**:
     *   **Summary**: "CoreDNS High Failure Rate".
-    *   **Metric key**: Type `coredns_dns_response_rcode_count_total`.
+    *   **Aggregation**: Select **Sum** (We want the total number of errors).
+    *   **Metric key**: Type `coredns_dns_response_rcode_count_total` OR select **`DNS response rcode count`**.
+        *   **Important**: Dynatrace often "pretty prints" the name.
+        *   *Fix*: Search just `dns_response` or `rcode` to see what is matches. If nothing matches, you **must** generate traffic first (see Prerequisite above).
     *   **Dimension filter**: Click **Add filter** -> `rcode` -> `SERVFAIL`.
         *   *Why?* We don't care about `NXDOMAIN` (User error) for this alert, only Server Failures.
 4.  **Step 2: Monitoring Strategy**:
