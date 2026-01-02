@@ -7,7 +7,7 @@ To bridge the gap between "Hello World" tutorials and "Production Reality". Each
 
 ## 📚 Modules
 
-### [Module 1: PDB_1012 (Pod Disruption Budget)](PDB_1012/README.md)
+### [Module 1: Pod Disruption Budget](Pod_Disruption_Budget/README.md)
 **Status**: ✅ Completed
 **Focus**: Availability, Upgrades, Node Draining.
 **Content**:
@@ -15,10 +15,10 @@ To bridge the gap between "Hello World" tutorials and "Production Reality". Each
 -   **Deep Dive**: How `Eviction API` and PDB Controller work.
 -   **Manifests**: Best practice YAMLs for Deployments and StatefulSets.
 -   **Labs**:
-    -   [Lab 1: Node Drain Simulation](PDB_1012/labs/lab-1-node-drain.md)
-    -   [Lab 2: Rolling Update Safety](PDB_1012/labs/lab-2-rolling-update.md)
-    -   [Lab 3: Cluster Upgrade & Quorum](PDB_1012/labs/lab-3-cluster-upgrade.md)
-    -   [Lab 4: Diagnosing Deadlocks](PDB_1012/labs/lab-4-pdb-failure-scenarios.md)
+    -   [Lab 1: Node Drain Simulation](Pod_Disruption_Budget/labs/lab-1-node-drain.md)
+    -   [Lab 2: Rolling Update Safety](Pod_Disruption_Budget/labs/lab-2-rolling-update.md)
+    -   [Lab 3: Cluster Upgrade & Quorum](Pod_Disruption_Budget/labs/lab-3-cluster-upgrade.md)
+    -   [Lab 4: Diagnosing Deadlocks](Pod_Disruption_Budget/labs/lab-4-pdb-failure-scenarios.md)
 -   **Interview Prep**: Senior-level Q&A on PDBs.
 
 ## 🛠️ Prerequisites for Labs

@@ -160,4 +160,4 @@ kubectl get events --sort-by='.lastTimestamp'
 
 ---
 
-*Created for PDB Learning Project (PDB_1012)*
+*Created for PDB Learning Project (Pod_Disruption_Budget)*
